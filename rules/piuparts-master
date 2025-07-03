@@ -1,0 +1,6 @@
+/etc/piuparts
+/var/lib/piuparts
+/var/lib/piuparts/piupartsm
+/var/lib/piuparts/htdocs/
+/var/lib/piuparts/backup/
+/var/lib/piuparts/master/

@@ -1,0 +1,4 @@
+/etc/bind/rndc.key
+/var/cache/bind/managed-keys.bind
+/var/cache/bind/managed-keys.bind.jnl
+/var/lib/bind

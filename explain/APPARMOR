@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+test -d "$CRUFT_ROOT/etc/apparmor.d" || exit 0
+
+test -d "$CRUFT_ROOT/etc/apparmor.d/local" && echo /etc/apparmor.d/local
+
+find "$CRUFT_ROOT/etc/apparmor.d/" -maxdepth 1 -type f -printf "%f\n" | while read -r file
+do
+	[ -e "$CRUFT_ROOT/etc/apparmor.d/cache/$file" ] && echo "/etc/apparmor.d/cache/$file"
+	[ -e "$CRUFT_ROOT/etc/apparmor.d/disable/$file" ] && echo "/etc/apparmor.d/disable/$file"
+	[ -e "$CRUFT_ROOT/etc/apparmor.d/local/$file" ] && echo "/etc/apparmor.d/local/$file"
+done
+
+
+test -d "$CRUFT_ROOT/etc/apparmor.d/abstractions" || exit 0
+
+test -d "$CRUFT_ROOT/etc/apparmor.d/local/abstractions" && echo /etc/apparmor.d/local/abstractions
+
+find "$CRUFT_ROOT/etc/apparmor.d/abstractions" -maxdepth 1 -type f -printf "%f\n" |
+while read -r file
+do
+        [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ] && echo "/etc/apparmor.d/local/abstractions/$file" || true
+done
+
+exit 0

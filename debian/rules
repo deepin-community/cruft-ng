@@ -1,4 +1,62 @@
 #!/usr/bin/make -f
+#DH_VERBOSE = 1
+include /usr/share/dpkg/pkg-info.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
+export DEB_CPPFLAGS_MAINT_APPEND = -std=gnu++17
+endif
+
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER
+endif
+
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
+export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER -std=gnu++1y
+endif
 
 %:
 	dh $@
+
+
+override_dh_auto_build-indep:
+
+override_dh_auto_build-arch:
+	./ruleset.sh ruleset $(DEB_DISTRIBUTION)
+	./ruleset.sh ruleset-minimal $(DEB_DISTRIBUTION)
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
+	dh_auto_build -- cruftold cpigsold
+	mv cruftold cruft
+	mv cpigsold cpigs
+else
+	dh_auto_build -- cruft cpigs
+endif
+
+
+override_dh_gencontrol-arch:
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
+	dh_gencontrol -- -Vdist:Depends="mlocate"
+else
+	dh_gencontrol -- -Vdist:Depends="plocate"
+endif
+
+override_dh_auto_install-indep:
+	dh_auto_install --destdir=debian/cruft-ng
+	mkdir -p debian/tmp/
+	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
+
+
+ifneq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
+override_dh_install-indep:
+	dh_install
+	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
+endif
+
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
+override_dh_install-arch:
+	dh_install
+	mkdir -p debian/cruft-ng/usr/lib/cruft/
+	cp -a dpkg_csv.py debian/cruft-ng/usr/lib/cruft/
+	cp -av archive/explain/* debian/cruft-ng/usr/libexec/cruft/
+endif

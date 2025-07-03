@@ -1,0 +1,5 @@
+/etc/chkrootkit.conf
+/var/log/chkrootkit/chkrootkit-daily.log
+/var/log/chkrootkit/log.expected
+/var/log/chkrootkit/log.today
+/var/log/chkrootkit/log.today.raw

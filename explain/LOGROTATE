@@ -1,0 +1,28 @@
+#!/bin/bash
+
+test -z "$CRUFT_ROOT" || exit 0
+
+# /etc/logrotate.d/dpkg always exists
+
+for definition in /etc/logrotate.d/*
+do
+	#dpkg -S $definition is too slow
+	package=${definition##*/}
+	case "$package" in
+		alternatives)
+			echo ALTERNATIVES
+			;;
+		btmp|wtmp)
+			echo logrotate
+			;;
+		*)
+			echo "$package"
+			;;
+	esac
+
+	grep ^/ "$definition" | cut -d ' ' -f 1 | cut -d '.' -f 1 | while read -r file
+	do
+		find /var/log -path "${file}*" 2>/dev/null
+	done
+done
+exit 0

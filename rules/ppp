@@ -1,0 +1,12 @@
+/etc/chatscripts/provider
+/etc/ppp/chap-secrets
+/etc/ppp/ip-up.d
+/etc/ppp/ip-down.d
+/etc/ppp/pap-secrets
+/etc/ppp/peers/provider
+/etc/ppp/peers
+/etc/ppp/resolv.conf
+/etc/ppp
+/var/log/ppp.log
+/var/log/ppp-connect-errors
+/var/log/ppp-ipupdown.log

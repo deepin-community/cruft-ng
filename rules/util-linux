@@ -1,0 +1,9 @@
+# END ruleset-minimal
+/etc/default/su
+/etc/terminal-colors.d
+/etc/terminal-colors.d/disable
+/etc/terminal-colors.d/enable
+/etc/terminal-colors.d/scheme
+/etc/terminal-colors.d/*.disable
+/etc/terminal-colors.d/*.enable
+/etc/terminal-colors.d/*.scheme

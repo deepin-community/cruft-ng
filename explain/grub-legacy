@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+test -z "$CRUFT_ROOT" || exit 0
+
+if [ -d /boot/grub ]
+then
+    d=/boot/grub
+elif [ -d /boot/boot/grub ]
+then
+    echo /boot/boot
+    d=/boot/boot/grub
+else
+    exit 0
+fi
+
+echo $d
+find $d -type f -name stage1 -or -name stage2 -or -name \*_stage1_5 -or -name device.map -or -name menu.lst\* -or -name default

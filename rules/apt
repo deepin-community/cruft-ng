@@ -1,0 +1,31 @@
+/var/lib/apt/extended_states
+/var/cache/apt/archives
+/var/cache/apt/archives/*
+/var/cache/apt/pkgcache.bin
+/var/cache/apt/srcpkgcache.bin
+/var/lib/apt/daily_lock
+/var/lib/apt/lists/*
+/var/lib/apt/lists/partial/*
+/var/backups/apt.extended_states.0
+/var/backups/apt.extended_states.*.gz
+/var/log/apt/eipp.log.xz
+# END ruleset-minimal
+/etc/apt/sources.list
+/etc/apt/apt.conf
+/etc/apt/auth.conf
+/etc/apt/preferences
+/etc/apt/trusted.gpg
+/etc/apt/trusted.gpg~
+/etc/apt/trustdb.gpg
+/etc/apt/secring.gpg
+/var/cache/apt/lock
+/var/lib/apt/cdroms.list
+/var/lib/apt/periodic/autoclean-stamp
+/var/lib/apt/periodic/clean-stamp
+/var/lib/apt/periodic/download-upgradeable-stamp
+/var/lib/apt/periodic/update-stamp
+/var/lib/apt/periodic/update-success-stamp
+/var/lib/apt/periodic/upgrade-stamp
+/var/lib/systemd/timers/stamp-apt-daily.timer
+# Modernized from /etc/apt/sources.list
+/etc/apt/sources.list.d/debian.sources

@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+test -z "$CRUFT_ROOT" || exit 0
+
+test -x /usr/sbin/dkms || exit 0
+
+versions=$(/usr/sbin/dkms status -m zfs | cut -d\, -f 3 | tr -d ' ')
+for ver in $versions
+do
+    echo "/lib/modules/${ver}/updates"
+    echo "/lib/modules/${ver}/updates/dkms"
+
+    for mod in zfs zcommon znvpair zpios zunicode
+    do
+        for ext in ko ko.xz
+        do
+            path="/lib/modules/${ver}/updates/dkms/${mod}.${ext}"
+            test -f "$path" && echo "$path"
+        done
+    done
+done
