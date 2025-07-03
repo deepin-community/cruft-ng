@@ -1,0 +1,7 @@
+# sample ignore file
+/var/cache/pbuilder/build
+/var/cache/pbuilder/ccache
+/var/chroot
+/var/schroot
+/var/www
+/var/www/html

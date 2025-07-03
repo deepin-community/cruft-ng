@@ -1,0 +1,16 @@
+/etc/hosts.equiv
+/etc/ssh/known_hosts
+/etc/ssh/shosts.equiv
+/etc/ssh/sshrc
+/etc/ssh/ssh_host_key
+/etc/ssh/ssh_host_key.pub
+/etc/ssh/ssh_host_rsa_key
+/etc/ssh/ssh_host_rsa_key.pub
+/etc/ssh/ssh_host_dsa_key
+/etc/ssh/ssh_host_dsa_key.pub
+/etc/ssh/ssh_host_ecdsa_key
+/etc/ssh/ssh_host_ecdsa_key.pub
+/etc/ssh/ssh_host_ed25519_key
+/etc/ssh/ssh_host_ed25519_key.pub
+/etc/ssh/sshd_config
+/etc/ssh/sshd_not_to_be_run

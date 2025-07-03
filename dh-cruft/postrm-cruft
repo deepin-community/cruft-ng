@@ -1,0 +1,5 @@
+if [ "$1" = "purge" ]
+then
+    # we need to glob, so no quotes
+#PURGE#
+fi

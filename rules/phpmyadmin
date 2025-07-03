@@ -1,0 +1,9 @@
+/etc/apache2/conf-available/phpmyadmin.conf
+/etc/avahi/services/phpmyadmin.service
+/etc/phpmyadmin/config-db.php
+/etc/phpmyadmin/htpasswd.setup
+/usr/share/applications/phpmyadmin.desktop
+/var/backups/phpmyadmin
+/var/backups/phpmyadmin/webbased-config.inc.php
+/var/lib/phpmyadmin/blowfish_secret.inc.php
+/var/lib/phpmyadmin/tmp/twig/

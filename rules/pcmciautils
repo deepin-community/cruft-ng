@@ -1,0 +1,3 @@
+/etc/default/pcmciautils
+/etc/pcmcia
+/etc/pcmcia/config.opts

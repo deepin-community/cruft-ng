@@ -1,9 +1,38 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: cruft-ng
+Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
+Copyright: 2014-2024 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2022 Guillem Jover <guillem@debian.org>
+           2023 Christian Göttsche <cgzones@googlemail.com>
+           2024 Jochen Sprickerhof <jochen@sprickerhof.de>
+License: GPL-2+
+
+Files: mlocate_db.h
+Copyright: 2005 Redhat <mitr@redhat.com>
+License: mlocate_db_license
+ You can use this file without restriction.
+ .
+ This file is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty
+ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Files: shellexp.cc
+Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
+           2005-2011 Marcin Owsiany <porridge@debian.org>
+           2014-2023 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2022 Christian Göttsche <cgzones@googlemail.com>
+License: GPL-2+
+
+Files: explain/* rules/*
+Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
+           2005-2011 Marcin Owsiany <porridge@debian.org>
+           2014-2024 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2023 Christian Göttsche <cgzones@googlemail.com>
+           2024 Jochen Sprickerhof <jochen@sprickerhof.de>
+License: GPL-2+
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

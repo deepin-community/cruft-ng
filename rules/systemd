@@ -1,0 +1,37 @@
+/etc/.updated
+/etc/machine-id
+/etc/vconsole.conf
+/var/.updated
+/var/cache/private
+/var/lib/systemd/backlight
+/var/lib/systemd/backlight/*
+/var/lib/systemd/catalog
+/var/lib/systemd/catalog/database
+/var/lib/systemd/coredump
+/var/lib/systemd/linger
+/var/lib/systemd/linger/*
+/var/lib/systemd/pstore
+/var/lib/systemd/random-seed
+/var/lib/systemd/rfkill
+/var/lib/systemd/rfkill/*
+/var/lib/systemd/timers
+/var/log/journal/
+/var/log/private
+/var/tmp/systemd-private-*
+/var/tmp/systemd-private-*/tmp
+/var/lib/systemd/timesync
+/var/lib/systemd/timesync/clock
+#systemd-timesyncd: another possible location
+/var/lib/private
+/var/lib/private/systemd
+/var/lib/private/systemd/timesync
+/var/lib/private/systemd/timesync/clock
+/var/log/README
+# END ruleset-minimal
+/etc/rc.local
+/etc/systemd/logind.conf.d
+/etc/systemd/network/*.network
+/etc/systemd/system/tmp.mount
+/etc/tmpfiles.d/tmp.conf
+/var/lib/container
+/var/lib/machines

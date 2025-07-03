@@ -1,0 +1,26 @@
+#!/bin/sh
+
+test -z "$CRUFT_ROOT" || exit 0
+
+set -eu
+
+if test -d /usr/lib/raspi-firmware
+then
+    find /usr/lib/raspi-firmware -maxdepth 1 -type f -printf "/boot/firmware/%f\n"
+fi
+
+if test -d /boot/firmware
+then
+    find /boot/firmware -maxdepth 1 -type f -name 'bcm*.dtb'
+fi
+
+packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null || true)"
+
+for package in $packages
+do
+    ver=$(echo "$package" | awk '{ print substr($1,13,40); }' )
+    [ -e "/boot/firmware/initrd.img-${ver}" ] && echo "/boot/firmware/initrd.img-${ver}"
+    [ -e "/boot/firmware/vmlinuz-${ver}"    ] && echo "/boot/firmware/vmlinuz-${ver}"
+done
+
+exit 0

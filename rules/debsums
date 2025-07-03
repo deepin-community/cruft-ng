@@ -1,0 +1,2 @@
+/etc/debsums-ignore
+/etc/apt/apt.conf.d/90debsums

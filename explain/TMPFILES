@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+
+# this is useful even when systemd is not the init system
+# because these declarative configs are shipped anyway
+
+find "$CRUFT_ROOT/usr/lib/tmpfiles.d/" -maxdepth 1 -type f -printf "%f\n"  | while read -r definition
+do
+    package="${definition%.*}"
+    case "$package" in
+        debian)
+           package="base-files"
+           ;;
+        lighttpd.tmpfile)
+           # there is ../rules/lighttpd
+           continue
+           ;;
+        journal-nocow|legacy|var)
+           continue
+           ;;
+        systemd-nologin|systemd-pstore|systemd-tmp|provision)
+           package="systemd"
+           ;;
+    esac
+
+    grep -v ^# < "/usr/lib/tmpfiles.d/${definition}" | sed 's/%./*/g' | while read -r _action path _extra
+    do
+        case "$path" in
+             /etc/*)
+                  echo "$path"
+                  ;;
+             /var/*)
+                  echo "$path"
+                  ;;
+        esac
+    done | sort -u | while read -r path
+    do
+        [ "$package" != "$last_package" ] && echo "$package"
+        # we purposefully want the shell to glob these paths
+        #
+        # false positives like "/var/log/journal/*/system.journal"
+        # are not a problem, they will never match a real file
+        #
+        # shellcheck disable=SC2086
+        echo $path
+        last_package="$package"
+    done
+done

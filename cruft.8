@@ -1,0 +1,51 @@
+.TH CRUFT 8
+.SH NAME
+cruft \- Check the filesystem for cruft (missing and unexplained files)
+.SH SYNOPSIS
+.B cruft [ FILE ]
+.SH "DESCRIPTION"
+.B cruft
+is a program that goes over the Debian packaging system's database, and
+compares the contents of that with the files actually on your system, and
+produces a summary of the differences.
+.SH OPTIONS
+If a file is provided, cruft\-ng will analyze this single file
+and print matching package(s) name(s).
+.br
+Without any option, cruft\-ng will analyze the whole system.
+.SH "FILES"
+A user can tune execution by providing extra configuration files:
+.TP
+.B /etc/cruft/ignore
+Do not process paths listed in this file, this can speed-up matching.
+Example values: /var/schroot/, /var/www/ ...
+This will override the default
+.B /usr/share/cruft/ignore
+.TP
+.B  /etc/cruft/filters/*
+Rules (glob-patterns) similar that are similar to those built-in into
+.I cruft
+package.
+The uppercase files are always processed, the lowercase ones are processed
+when matching package is installed.
+.TP
+.B /etc/cruft/explain/*
+Shell scripts that will print-out a list of temporary file
+belonging to a package.
+The uppercase files are always processed, the lowercase ones are processed
+when matching package is installed.
+
+.SH "ENVIRONMENT VARIABLES"
+It is possible to get some debugging information from cruft by setting the variable
+.B DEBUG.
+.SH "CAVEAT"
+The cleansing command
+.B apt purge '~c'
+should be run beforehand. Beware that this may cleanse old databases
+and currently unused settings you would have liked to preserve.
+.SH "SEE ALSO"
+Documentation from original cruft package:
+https://github.com/a-detiste/cruft/blob/master/README
+.SH AUTHOR
+This manual page was written by Alexandre Detiste <alexandre@detiste.be>,
+for the Debian GNU/Linux system (but may be used by others).

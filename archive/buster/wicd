@@ -1,0 +1,6 @@
+/etc/wicd/dhclient.conf.template
+/etc/wicd/manager-settings.conf
+/etc/wicd/wired-settings.conf
+/etc/wicd/wireless-settings.conf
+/var/lib/wicd/dhclient.conf
+/var/log/wicd/wicd.log

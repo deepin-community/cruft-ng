@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+
+test -z "$CRUFT_ROOT" || exit 0
+
+test -f /var/lib/ucf/registry || exit 0
+
+last_package=None
+while read -r package file
+do
+    if test -f "$file"
+    then
+        if [ "$package" != "$last_package" ]
+        then
+            echo "$package"
+        fi
+        echo "$file"
+        last_package="$package"
+    fi
+done < /var/lib/ucf/registry
+

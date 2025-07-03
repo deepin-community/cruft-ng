@@ -1,0 +1,49 @@
+#!/bin/sh
+set -e
+
+test -z "$CRUFT_ROOT" || exit 0
+
+test -d /var/lib/systemd/timers/ || exit 0
+
+find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | sort | while read -r unit
+do
+    stamp="/var/lib/systemd/timers/stamp-$unit"
+
+    if test -e "/etc/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/etc/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
+    elif test -e "/usr/lib/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/usr/lib/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
+    # Buster is not UsrMerge'd
+    elif test -e "/lib/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/lib/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
+    elif test -e "/run/systemd/generator/$unit"
+    then
+        if grep -q "Persistent=true" "/run/systemd/generator/$unit"
+        then
+            echo "$stamp"
+        fi
+    fi
+done
+
+exit 0
+
+#for f in $(cd /var/lib/systemd/timers/ ; echo *.timer)
+#do
+#  unit=${f#stamp-}
+#  if [ "$(systemctl show $unit -p Persistent)" = "Persistent=yes" ]
+#  then
+#    echo "/var/lib/systemd/timers/$f"
+#  fi
+#done

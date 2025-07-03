@@ -1,0 +1,16 @@
+/etc/rsyslog.d/50-default.conf
+/var/log/auth.log*
+/var/log/daemon.log*
+/var/log/debug*
+/var/log/kern.log*
+/var/log/messages*
+/var/log/syslog*
+/var/log/user.log*
+# /lib/systemd/system/dmesg.service
+# ExecStartPre= ... savelog ...
+/var/log/dmesg
+/var/log/dmesg.0
+/var/log/dmesg.1.gz
+/var/log/dmesg.2.gz
+/var/log/dmesg.3.gz
+/var/log/dmesg.4.gz

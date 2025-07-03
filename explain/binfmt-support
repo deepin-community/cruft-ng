@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -e
+
+test -z "$CRUFT_ROOT" || exit 0
+
+test -x /usr/sbin/update-binfmts || exit 0
+
+/usr/sbin/update-binfmts --display | while read -r line
+do
+    case "$line" in
+       package*)
+            package="${line##*= }"
+            echo "$package"
+            echo "/var/lib/binfmts/$file"
+            ;;
+       type*)
+            ;;
+       offset*)
+            ;;
+       magic*)
+            ;;
+       mask*)
+            ;;
+       interpreter*)
+            ;;
+       detector*)
+            ;;
+       *)
+            file="${line%% *}"
+            ;;
+    esac
+done

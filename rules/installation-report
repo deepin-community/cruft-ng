@@ -1,0 +1,12 @@
+/var/log/installer
+/var/log/installer/cdebconf
+/var/log/installer/cdebconf/questions.dat
+/var/log/installer/cdebconf/templates.dat
+/var/log/installer/firmware-summary
+/var/log/installer/hardware-summary
+/var/log/installer/lsb-release
+/var/log/installer/partman
+/var/log/installer/status
+/var/log/installer/syslog
+/var/log/installer/Xorg.0.log
+/var/log/debian-installer

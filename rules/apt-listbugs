@@ -1,0 +1,4 @@
+/etc/apt/apt.conf.d/10apt-listbugs
+/etc/apt/apt.conf.d/10apt-listbugs.disabled
+/etc/apt/listbugs/ignore_bugs
+/var/spool/apt-listbugs/lastprefclean

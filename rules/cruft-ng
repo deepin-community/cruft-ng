@@ -1,0 +1,7 @@
+/etc/cruft/explain/*
+/etc/cruft/filters/*
+/etc/cruft/ignore
+# z_cruft optional cron script
+/etc/cron.daily/z_cruft
+/var/spool/cruft/report_*.log
+/var/spool/cruft/report_*.log.tmp
